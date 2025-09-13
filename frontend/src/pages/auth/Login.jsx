@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Register from './Register'
+import AuthButton from '../../components/auth/AuthButton';
 
 function Login() {
-     document.title = "Login User";
+    const [loading, setLoading] = useState(false);
+
+    const handleSignin = () => 
+        {
+            setLoading(true);
+            setTimeout(()=> setLoading(false), 2000);
+        }
+
+    document.title = "Login User";
   return (
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
@@ -39,10 +48,7 @@ function Login() {
                         Forgot password?
                     </a>
                 </div>
-                
-                <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
-                    Sign In
-                </button>
+                <AuthButton loading={loading} onClick={handleSignin} disabled={false}>Login</AuthButton>
             </form>
             
             <div className="mt-6 text-center">
